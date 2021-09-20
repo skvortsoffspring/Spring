@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Del Task</title>
+    <link rel="stylesheet" type="text/css" th:href="@{style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>New Task:</h1>
+    <form th:action="@{/del}"
+          th:object="${TaskForm}" method="GET">
+        <p>Title:
+            <input type="text" th:field="*{name}" />
+        </p>
+
+        <input class ="button-main-page" type="submit" value="Del" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+</div>
+</body>
