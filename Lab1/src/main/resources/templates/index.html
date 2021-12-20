@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Task List</title>
-    <link rel="stylesheet" type="text/css" th:href="@{style.css}"/>
+    <link rel="stylesheet" th:href="@{style.css}" type="text/css"/>
 </head>
 <body>
+
 <h1 th:utext="${message}">..!..</h1>
+
 <h2>
-    <a th:href="@{/gettasks}">Get task list</a><br>
-    <a th:href="@{/add}">Add task list</a>
-    <a th:href="@{/del}">Del task list</a>
+    <a th:href="@{/gettasks}">Get task list</a>
+    <a th:href="@{/add}">Add a task to the list</a>
+    <a th:href="@{/rplc}">Replace a task</a>
+    <a th:href="@{/del}">Del a task from list</a>
 </h2>
 
 </body>

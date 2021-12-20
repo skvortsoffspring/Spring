@@ -8,13 +8,14 @@
         <version>2.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.example</groupId>
     <artifactId>Lab1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Lab1</name>
     <description>Lab1</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -45,7 +46,17 @@
             <artifactId>thymeleaf-spring5</artifactId>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.5.6</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

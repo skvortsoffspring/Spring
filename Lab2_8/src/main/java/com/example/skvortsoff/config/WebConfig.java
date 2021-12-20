@@ -1,6 +1,5 @@
-package com.example.lab1.config;
+package com.example.skvortsoff.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -49,4 +48,3 @@ public class WebConfig implements WebMvcConfigurer
         registry.addViewController("/").setViewName("index");
     }
 }
-

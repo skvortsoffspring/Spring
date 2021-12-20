@@ -10,6 +10,7 @@ import java.util.Calendar;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
+    private Integer id;
     private String name;
     private String task;
 }

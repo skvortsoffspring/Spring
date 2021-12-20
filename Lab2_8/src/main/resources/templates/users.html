@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8" />
+    <title>Task List</title>
+</head>
+<body>
+<h1>Films list</h1>
+<br/><br/>
+
+<div  class ="container">
+    <h2>
+        <a th:href="@{/index}">Home</a>
+        <a th:href="@{/del}">Del task list</a>
+    </h2>
+    <table>
+        <tr>
+            <th><h1>DS</h1></th>
+            <th><h1>Title</h1></th>
+            <th><h1>Action</h1></th>
+        </tr>
+    <tr th:each ="user : ${users}">
+            <td th:utext="${user.code}">...</td>
+            <td th:utext="${user.login}">...</td>
+            <td th:utext="${user.email}">...</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

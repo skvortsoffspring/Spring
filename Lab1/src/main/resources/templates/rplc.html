@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Add Task</title>
     <link rel="stylesheet" type="text/css" th:href="@{style.css}"/>
 </head>
-
 <body>
-
 <div class="container">
     <h1>New Task:</h1>
     <h2>
         <a th:href="@{/index}">Home</a><br>
     </h2>
-    <form th:action="@{/add}"
+    <form th:action="@{/rplc}"
           th:object="${taskForm}" method="POST">
+        <p>ID:
+            <input type="number" th:field="*{id}" />
+        </p>
         <p>Title:
             <input type="text" th:field="*{name}" />
         </p>
@@ -25,8 +25,7 @@
         <input class ="button-main-page" type="submit" value="Add" />
     </form>
 </div>
-
 <div th:if="${errorMessage}" th:utext="${errorMessage}"
-     style="color:red; font-style:italic;" >
+     style="color:red;font-style:italic;">
 </div>
 </body>
