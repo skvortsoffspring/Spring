@@ -1,8 +1,11 @@
 package com.example.skvortsoff.controller;
 
+import com.example.skvortsoff.entity.Course;
 import com.example.skvortsoff.entity.User;
+import com.example.skvortsoff.repository.CourseRepository;
 import com.example.skvortsoff.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +19,8 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private CourseRepository courseRepository;
+    @Autowired
     private DataSource dataSource;
 
     @GetMapping("/test")
@@ -23,5 +28,11 @@ public class UserController {
     public Iterable<User> getTest(@RequestParam(defaultValue = "main") String client) {
 
         return userRepository.findAll();
+    }
+
+    @GetMapping("/GetAllCourses")
+    public Iterable<Course> getAllCourses(Model model){
+var test = courseRepository.findAll();
+        return courseRepository.findAll();
     }
 }

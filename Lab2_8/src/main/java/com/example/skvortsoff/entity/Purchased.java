@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entitys
+@Entity
 public class Purchased {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

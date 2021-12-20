@@ -24,6 +24,7 @@ public class Category {
     @Column(name = "NAME", nullable = false, length = 30)
     private String name;
 
-    @Column(name = "IMAGE")
+    @Column(name = "IMAGE", columnDefinition = "blob")
     private byte[] image;
+
 }

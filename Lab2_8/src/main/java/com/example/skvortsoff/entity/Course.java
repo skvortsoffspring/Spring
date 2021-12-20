@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -26,14 +27,14 @@ public class Course {
     @Column(name = "NAME", length = 100)
     private String name;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
     @Column(name = "DESCRIPTION", nullable = false, length = 1000)
     private String description;
 
-    @Column(name = "IMAGE")
+    @Column(name = "IMAGE", columnDefinition = "blob")
     private byte[] image;
 
     @Column(name = "PRICE", precision = 10, scale = 2)
@@ -48,4 +49,5 @@ public class Course {
 
     @Column(name = "COMPLEXITY")
     private Integer complexity;
+
 }
