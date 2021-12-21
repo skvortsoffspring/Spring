@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-
 @Table(name = "course", indexes = {
         @Index(name = "CATEGORY", columnList = "CATEGORY"),
         @Index(name = "IX_COURSE_NAME", columnList = "NAME"),
