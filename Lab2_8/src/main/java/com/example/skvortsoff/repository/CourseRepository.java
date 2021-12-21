@@ -11,6 +11,6 @@ import java.util.Collection;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-     @Query(value = "CALL FINDTENCOURSES(:page);", nativeQuery = true)
-     Collection<Course> findTenCourses(@Param("page") int page);
+     @Query(value = "CALL FINDNINECOURSES(:page);", nativeQuery = true)
+     Collection<Course> findNineCourses(@Param("page") int page);
 }

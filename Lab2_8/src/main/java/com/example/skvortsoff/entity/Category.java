@@ -16,10 +16,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "NAME", nullable = false, length = 30)
     private String name;

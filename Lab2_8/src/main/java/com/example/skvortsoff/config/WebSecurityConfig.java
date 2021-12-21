@@ -40,12 +40,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 User.builder()
                         .username("admin")
                         .password(passwordEncoder().encode("admin"))
-                        .roles(Role.ADMIN.name())
+                        .authorities(Role.ADMIN.getAuthorities())
                         .build(),
         User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("user"))
-                .roles(Role.USER.name())
+                .authorities(Role.USER.getAuthorities())
                 .build()
         );
     }
