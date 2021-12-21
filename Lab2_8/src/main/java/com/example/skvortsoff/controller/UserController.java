@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("/GetAllCourses")
     public Iterable<Course> getAllCourses(Model model){
-var test = courseRepository.findAll();
-        return courseRepository.findAll();
+
+        return courseRepository.findTenCourses(1);
     }
 }

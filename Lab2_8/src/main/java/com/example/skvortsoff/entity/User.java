@@ -21,14 +21,17 @@ public class User {
     @Column(name = "ID", nullable = false)
     private Integer id;
 
+    @Column(name = "LOGIN", nullable = false, length = 20)
+    private String login;
+
     @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
 
+    @Column(name = "PHONE", length = 15)
+    private String phone;
+
     @Column(name = "PASSWORD", nullable = false, length = 20)
     private String password;
-
-    @Column(name = "LANGUAGE", length = 2)
-    private String language;
 
     @Column(name = "ROLE")
     private Integer role;
