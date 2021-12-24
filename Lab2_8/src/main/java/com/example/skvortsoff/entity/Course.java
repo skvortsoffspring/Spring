@@ -34,7 +34,7 @@ public class Course {
     @Column(name = "DESCRIPTION", nullable = false, length = 1000)
     private String description;
 
-    @Column(name = "IMAGE", columnDefinition = "blob")
+    @Column(name = "IMAGE", columnDefinition = "mediumblob")
     private byte[] image;
 
     @Column(name = "PRICE", precision = 10, scale = 2)
