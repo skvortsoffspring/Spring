@@ -1,5 +1,7 @@
 package com.example.skvortsoff.entity;
 
+import com.example.skvortsoff.entity.enums.Role;
+import com.example.skvortsoff.entity.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +32,14 @@ public class User {
     @Column(name = "PHONE", length = 15)
     private String phone;
 
-    @Column(name = "PASSWORD", nullable = false, length = 20)
+    @Column(name = "PASSWORD", nullable = false, length = 100)
     private String password;
 
     @Column(name = "ROLE")
-    private Integer role;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 }

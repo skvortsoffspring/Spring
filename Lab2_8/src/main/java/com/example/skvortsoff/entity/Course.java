@@ -1,5 +1,6 @@
 package com.example.skvortsoff.entity;
 
+import com.example.skvortsoff.entity.enums.Hide;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +42,7 @@ public class Course {
     private BigDecimal price;
 
     @Column(name = "HIDE")
-    private Boolean hide;
+    private Hide hide;
 
     @ManyToOne
     @JoinColumn(name = "AUTHOR")
