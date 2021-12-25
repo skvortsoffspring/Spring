@@ -14,9 +14,9 @@ import javax.validation.constraints.NotBlank;
 public class AuthUserDto {
 
     @NotBlank
-    public String login;
+    private String email;
 
     @NotBlank
-    public String password;
+    private String password;
 
 }

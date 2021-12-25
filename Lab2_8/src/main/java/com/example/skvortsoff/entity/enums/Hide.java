@@ -4,9 +4,6 @@ public enum Hide {
     SHOW(false),
     HIDE(true);
 
-    public Boolean val;
-    Hide(Boolean val)
-    {
-        this.val = val;
+    Hide(boolean b) {
     }
 }

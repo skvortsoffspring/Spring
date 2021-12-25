@@ -3,10 +3,10 @@ package com.example.skvortsoff.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public  class PhoneValidator implements ConstraintValidator<FieldPhone,String> {
+public  class PhoneValidator implements ConstraintValidator<Phone,String> {
 
     @Override
-    public void initialize(FieldPhone param) {
+    public void initialize(Phone param) {
     }
 
     @Override

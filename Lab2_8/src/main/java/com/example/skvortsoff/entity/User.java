@@ -2,12 +2,14 @@ package com.example.skvortsoff.entity;
 
 import com.example.skvortsoff.entity.enums.Role;
 import com.example.skvortsoff.entity.enums.Status;
+import com.example.skvortsoff.validator.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Table(name = "user", indexes = {
         @Index(name = "IX_USER_EMAIL", columnList = "EMAIL")
@@ -26,9 +28,11 @@ public class User {
     @Column(name = "LOGIN", nullable = false, length = 20)
     private String login;
 
-    @Column(name = "EMAIL", nullable = false, length = 100)
+    @Email(message = "Email invalid")
+    @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
 
+    @Phone
     @Column(name = "PHONE", length = 15)
     private String phone;
 

@@ -42,7 +42,7 @@ public class Course {
     private BigDecimal price;
 
     @Column(name = "HIDE")
-    private Hide hide;
+    private Boolean hide;
 
     @ManyToOne
     @JoinColumn(name = "AUTHOR")

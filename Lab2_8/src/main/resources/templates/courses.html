@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
@@ -10,4 +11,66 @@
     <input type="submit" value="Sign Out"/>
 </form>
 </body>
+</html>-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div th:if="${param.error}">
+    Invalid username or password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+    <div><label> User NAME : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <button  onclick="responseGet()">Press please</button>
+    <button  onclick="getCourses()">GetCourses</button>
+    <button  onclick="getLogout()">Logout</button>
+</body>
 </html>
+
+<script>
+    async function responseGet() {
+        fetch("http://localhost:8080/api/auth/login", {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({email: "admin@mail.ru", password: "admin"})
+        })
+            .then(data => data.json())
+            .then(result => {
+                console.log(result.email, result.token);
+                localStorage.setItem("token", result.token);
+            });
+    }
+    async function getCourses(){
+        fetch("http://localhost:8080/api/courses/get/page/0", {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            },
+            method: "GET"
+        })
+            .then(data => data.json())
+            .then(result => {
+                console.log(JSON.stringify(result));
+            });
+    }
+    async function getLogout(){
+        await fetch("http://localhost:8080/api/auth/logout", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            },
+            method: "POST"
+        });
+    }
+
+</script>
