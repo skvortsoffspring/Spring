@@ -13,10 +13,10 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class AuthUserDto {
 
-    @NotBlank
+    @NotBlank(message = "Email is mandatory")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
 }

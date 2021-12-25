@@ -1,6 +1,7 @@
 package com.example.skvortsoff.security;
 
 import com.example.skvortsoff.exeption.JwtAuthenticationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class JwtTokenFilter extends GenericFilterBean {
@@ -35,7 +38,9 @@ public class JwtTokenFilter extends GenericFilterBean {
             }
         }catch (JwtAuthenticationException e){
             SecurityContextHolder.clearContext();
-            ((HttpServletResponse)response).sendError(e.getHttpStatus().value());
+            Map<Object, Object> error = new HashMap<>();
+            error.put("error", "email or password not valid");
+            ResponseEntity.ok(error);
             throw new JwtAuthenticationException("Jwt token is expired or invalid");
         }
         chain.doFilter(request, response);
