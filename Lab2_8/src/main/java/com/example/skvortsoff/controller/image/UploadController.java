@@ -1,4 +1,4 @@
-package com.example.skvortsoff.controller;
+package com.example.skvortsoff.controller.image;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

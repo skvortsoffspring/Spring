@@ -1,8 +1,7 @@
 package com.example.skvortsoff.controller;
 
-import com.example.skvortsoff.dto.NewCourseDto;
-import com.example.skvortsoff.entity.Course;
-import com.example.skvortsoff.repository.CourseRepository;
+import com.example.skvortsoff.dto.CourseDto;
+import com.example.skvortsoff.service.CoursesService;
 import com.example.skvortsoff.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,28 +11,40 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/courses/**")
 public class CoursesController {
 
+    private final CoursesService coursesService;
+
     @Autowired
-    private CourseRepository courseRepository;
+    public CoursesController(CoursesService coursesService) {
+        this.coursesService = coursesService;
+    }
+
 
     @GetMapping("get/page/{page}")
-    @PreAuthorize("hasAuthority('user:read')")
     @ResponseBody
-    public Iterable<Course> getAllCourses(@PathVariable("page") int id){
-        return courseRepository.findNineCourses(id);
+    public Iterable<CourseDto> getAllCoursesPage(@PathVariable("page") long id){
+        return coursesService.getPage(id);
     }
 
     @GetMapping("get/{id}")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
-    public NewCourseDto Create(@PathVariable("id") long id){
-        return Mapper.map(courseRepository.getById(id), NewCourseDto.class);
+    public CourseDto CreateCourseById(@PathVariable("id") long id){
+        return coursesService.GetCourseDto(id);
     }
 
-    @PostMapping("get/{id}")
+    @GetMapping("get/search/{val}")
+    @PreAuthorize("hasAuthority('user:read')")
+    @ResponseBody
+    public Iterable<CourseDto> getByNameSearch(@PathVariable("val") String name){
+
+        return coursesService.Search(name);
+    }
+
+    @PostMapping("get/size")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
-    public NewCourseDto CreatePost(@PathVariable("id") long id){
-        return Mapper.map(courseRepository.getById(id), NewCourseDto.class);
+    public long getSize(){
+        return coursesService.Size();
     }
 
 }

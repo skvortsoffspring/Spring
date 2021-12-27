@@ -14,12 +14,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewPurchasedDto {
+public class PurchasedDto {
 
-    @NotNull
-    private User user;
-
-    @NotNull
     private Course course;
 
     private String key;

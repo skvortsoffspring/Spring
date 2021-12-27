@@ -9,7 +9,6 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Phone {
-
     String message() default "{Invalid phone, example: 29-123-45-67 (Belarus) 719-123-45-67 (Russia)}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

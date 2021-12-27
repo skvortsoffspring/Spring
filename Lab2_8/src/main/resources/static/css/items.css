@@ -1,0 +1,61 @@
+.wrapper {
+    display: grid;
+    grid-gap: 50px;
+    grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+    grid-auto-flow: row dense;  /* or 'row', 'row dense', 'column dense' */
+    border: gray 1px;
+    float: right;
+}
+.content__item{
+    display: grid;
+    grid-template-rows: 2fr 0.3fr 0.3fr 0.3fr;
+    grid-template-columns: 5fr 5fr;
+    grid-template-areas:    'image image'
+                            'name name'
+                            'complexity complexity'
+                            'price basket';
+    width: 200px;
+    height: 300px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: auto;
+    align-items: stretch;
+}
+.content__item > button {
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.content__item__img{
+    grid-area: image;
+    max-width:200px;
+}
+.content__item__name{
+    grid-area: name;
+    font-variant: all-petite-caps;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: x-large;
+}
+
+.content__item__complexity{
+    grid-area: complexity;
+    border-bottom: 1px black solid;
+    font-family: BomberEscortOutline, sans-serif;
+    font-size: x-large;
+    vertical-align: center;
+}
+
+.content__item__price{
+    grid-area: price;
+    font-variant: all-petite-caps;
+    font-family: "Arial Narrow", serif;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.content__item__button{
+    grid-area: basket;
+}

@@ -11,4 +11,9 @@ public class PageController {
     public String getRegisterPage(){
         return "register";
     }
+
+    @GetMapping("/admin")
+    public String GetAdminPage(){
+        return "admin";
+    }
 }

@@ -1,0 +1,47 @@
+.login{
+    border: 1px solid gray;
+    display: grid;
+    position: absolute;
+    grid-template-rows: 2fr 1fr 1fr 0.7fr 0.5fr;
+    grid-template-areas:    'login_head'
+                            'login_email'
+                            'login_pass'
+                            'login_button'
+                            'login_remember';
+    height: 300px;
+    width: 200px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background: white;
+    box-shadow: black;
+}
+.login__head{
+    grid-area: login_head;
+    font-family: BomberEscort, sans-serif;
+    font-size: x-large;
+    font-stretch: condensed;
+    line-height: 1.5em;
+    text-align: center;
+    margin: auto;
+}
+
+
+.login__email{
+    grid-area: login_email;
+}
+.login__password{
+    grid-area: login_pass;
+}
+
+.login__label{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.login__input{
+    margin-left: 10px;
+    margin-right: 10px;
+}

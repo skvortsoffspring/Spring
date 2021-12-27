@@ -59,3 +59,11 @@ alter table PURCHASED add foreign key (`USER`) references `USER` (`ID`);
 
 alter table PURCHASED add foreign key (`COURSE`) references `COURSE` (`ID`);
 alter table COURSE add foreign key (`CATEGORY`) references `CATEGORY` (`ID`);
+
+-- page in 8 items
+create or replace
+    definer = root@localhost procedure FINDEIGHTCOURSES(IN page int)
+begin
+    select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY from (select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY, row_number() over(order by course.ID) rn from course
+                                                                                        ) as Nr  where rn  between  (page * 8 + 1) and (page * 8 + 8);
+end;

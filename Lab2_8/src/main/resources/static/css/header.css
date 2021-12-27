@@ -1,40 +1,16 @@
-@font-face {
-    font-family: Crizen;
-    src: url(../fonts/Crizen.otf);
-}
-@font-face {
-    font-family: BomberEscortOutline;
-    src: url(../fonts/BomberEscortOutline.otf);
-}
-@font-face {
-    font-family: BomberEscort;
-    src: url(../fonts/BomberEscort.otf);
-}
-
-/**** RESET STYLES ****/
-
-button{
-    border: 0;
-    font-size: large;
-    background-color: white;
-    cursor: pointer;
-    font-family: BomberEscort, sans-serif;
-}
-
 /**** HEADER ****/
 
 header{
     display: grid;
     align-items: center;
     grid-template-columns: 1.5fr 2fr 1fr 0.5fr;
-    grid-template-rows: 50px;
     grid-gap: 10px;
 }
 
 .header_logo_text{
     font-size: 30px;
     color: #003f8a;
-    font-family: BomberEscortOutline, sans-serif;
+    font-family: BomberEscort, sans-serif;
     left: 0;
     right: 0;
 }

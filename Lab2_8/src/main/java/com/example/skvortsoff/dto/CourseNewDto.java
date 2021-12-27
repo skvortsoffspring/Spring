@@ -13,7 +13,10 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EditCourseDto {
+public class CourseNewDto {
+
+    @NotBlank
+    private String name;
 
     @NotBlank
     private String description;
@@ -26,6 +29,6 @@ public class EditCourseDto {
     @NotNull
     private Boolean hide;
 
-    @Column(name = "COMPLEXITY")
+    @NotBlank
     private Integer complexity;
 }
