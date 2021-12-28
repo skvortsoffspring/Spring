@@ -4,17 +4,17 @@ body, button, span, div{
 }
 @font-face {
     font-family: Crizen;
-    src: url(../fonts/Crizen.otf);
+    src: url(../../fonts/Crizen.otf);
 }
 
 @font-face {
     font-family: BomberEscortOutline;
-    src: url(../fonts/BomberEscortOutline.otf);
+    src: url(../../fonts/BomberEscortOutline.otf);
 }
 
 @font-face {
     font-family: BomberEscort;
-    src: url(../fonts/BomberEscort.otf);
+    src: url(../../fonts/BomberEscort.otf);
 }
 
 /**** RESET STYLES ****/

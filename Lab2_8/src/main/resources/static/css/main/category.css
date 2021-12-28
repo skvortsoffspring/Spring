@@ -1,0 +1,11 @@
+.category{
+    display: grid;
+    float: left;
+    grid-auto-flow: row;
+    grid-auto-rows: 60px;
+    grid-gap: 10px;
+}
+
+.category__button{
+    border-bottom: 1px gray solid;
+}

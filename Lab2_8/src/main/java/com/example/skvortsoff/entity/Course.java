@@ -44,7 +44,7 @@ public class Course {
     @Column(name = "HIDE")
     private Boolean hide;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "AUTHOR")
     private User author;
 

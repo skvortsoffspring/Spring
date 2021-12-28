@@ -5,10 +5,10 @@ import com.example.skvortsoff.dto.UserNewDto;
 import com.example.skvortsoff.entity.User;
 import com.example.skvortsoff.entity.enums.Role;
 import com.example.skvortsoff.entity.enums.Status;
+import com.example.skvortsoff.exeption.TokenException;
 import com.example.skvortsoff.repository.UserRepository;
 import com.example.skvortsoff.security.JwtTokenProvider;
 import com.example.skvortsoff.util.Mapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class AuthenticationService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    public ResponseEntity<?> authenticate(AuthUserDto request) {
+    public ResponseEntity<?> authenticate(AuthUserDto request) throws TokenException {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
             User user = userRepository.findByEmail((request.getEmail())).orElseThrow(() -> new UsernameNotFoundException("User not found"));
@@ -43,9 +44,10 @@ public class AuthenticationService {
             response.put("token", token);
             return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
-            Map<Object, Object> response = new HashMap<>();
+            /*Map<Object, Object> response = new HashMap<>();
             response.put("error", "Invalid email or password");
-            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);*/
+            throw new TokenException("User or Email not valid");
         }
     }
     public ResponseEntity<?> register(UserNewDto userDto) {

@@ -1,12 +1,15 @@
 package com.example.skvortsoff.security;
 
 import com.example.skvortsoff.exeption.JwtAuthenticationException;
+import com.example.skvortsoff.exeption.TokenException;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -28,8 +31,9 @@ public class JwtTokenFilter extends GenericFilterBean {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    @SneakyThrows
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
 
         try {
@@ -39,11 +43,9 @@ public class JwtTokenFilter extends GenericFilterBean {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
-        }catch (JwtAuthenticationException e){
+        }catch (Exception e){
             SecurityContextHolder.clearContext();
-            Map<Object, Object> error = new HashMap<>();
-            error.put("error", " Jwt token is expired or invalid");
-            //throw new JwtAuthenticationException("Jwt token is expired or invalid");
+                //throw new TokenException("Jwt token is expired or invalid...");
         }
         chain.doFilter(request, response);
     }

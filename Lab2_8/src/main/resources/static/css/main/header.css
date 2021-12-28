@@ -4,12 +4,12 @@ header{
     display: grid;
     align-items: center;
     grid-template-columns: 1.5fr 2fr 1fr 0.5fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
 }
 
 .header_logo_text{
+    padding-left: 10px;
     font-size: 30px;
-    color: #003f8a;
     font-family: BomberEscort, sans-serif;
     left: 0;
     right: 0;
@@ -37,16 +37,31 @@ header{
     display: grid;
     align-items: center;
     grid-template-rows: 50px;
-    grid-template-areas: 'fieldSearch buttonSearch';
+    grid-gap: 5px;
+    grid-template-areas: 'fieldSearch buttonReset buttonSearch';
 }
 
 .header__field__search{
     grid-area: fieldSearch;
     width: 3fr;
 }
+.header__button__search:hover{
+    color: red;
+}
 .header__button__search{
     grid-area: buttonSearch;
     width: 1fr;
+}
+.header__button__reset{
+    grid-area: buttonReset;
+    border: 1px black solid;
+    width: 22px;
+    height: 22px;
+    font-size: 15px;
+    border-radius: 50%;
+}
+.header__button__reset:hover{
+    color: red;
 }
 
 

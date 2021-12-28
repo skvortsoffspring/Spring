@@ -1,0 +1,43 @@
+/**** HEADER ****/
+header{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-areas: 'category home login ';
+    grid-gap: 5px;
+}
+
+/**** NAVIGATION ****/
+.header__category{
+    grid-area: category;
+}
+
+.header__category >label {
+    font-size: large;
+}
+
+.header__category >label > input{
+    font-size: large;
+}
+
+.header__category > button{
+    border: 1px black solid;
+    width: 30px;
+    height: 30px;
+}
+
+.header__nav{
+    grid-area: home;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.nav__button:hover{
+    color: purple;
+}
+
+#header__login__button{
+    grid-area: login;
+}
+#header__login__button:hover{
+    color: red;
+}

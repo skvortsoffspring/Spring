@@ -1,7 +1,7 @@
 window.onload = function() {
     GetCategories();
-    getCourses(1);
-    LoadForm(false);
+    getCourses();
+    LoadForm(true);
 }
 
 //check token
@@ -11,13 +11,14 @@ document.addEventListener("DOMContentLoaded", CheckStorageToken);
 function CheckStorageToken(){
     if(getToken()!== null) {
         document.getElementById("header__login__button").innerText = "LOG OUT";
-        ManagerFormLogin(true);
+        document.getElementById("header__login__button").onclick = SignOut;
         return true;
     }else{
         document.getElementById("header__login__button").innerText = "LOG IN";
-        ManagerFormLogin(false);
+        document.getElementById("header__login__button").onclick = ManagerFormLogin;
         return false;
     }
+
 }
 
 async function SignIn() {
@@ -36,9 +37,8 @@ async function SignIn() {
     })
         .then(data => data.json())
         .then(result => {
-            if(!result.error) {
-                console.log(result.email, result.token);
-                console.log(document.getElementById("remember").checked);
+            console.log(result);
+            if(result.email) {
                 if(document.getElementById("remember").checked){
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("email", result.email);
@@ -49,6 +49,7 @@ async function SignIn() {
                     localStorage.clear();
                 }
                 CheckStorageToken();
+                ManagerFormLogin();
             }else
             {
                 console.log(result.error);
@@ -82,21 +83,25 @@ let getToken = () => {
         return null;
 }
 
-let ManagerFormLogin = (visible) => {
+let ManagerFormLogin = () => {
+
     let formLogin = document.getElementById("login");
-    if(visible){
-        formLogin.style.display  = "none";
-        return false;
+
+    if(localStorage.getItem("login")){
+        formLogin.style.display = "none";
+        localStorage.removeItem("login");
     }else{
-        formLogin.style.display  = "grid";
-        return true;
+        formLogin.style.display = "grid";
+        localStorage.setItem("login", "true");
     }
 }
 
 let LoadForm = (val) => {
     let LogInForm = document.getElementById("login");
     if(val){
-        LogInForm.innerHTML = `<div class="login__head">
+        LogInForm.innerHTML = `
+    <button class="login__button__close" onclick="ManagerFormLogin()">X</button>
+    <div class="login__head">
         <span class="login__head__text">PROTECTED COURSES</span>
     </div>
     <div class="login__email">
@@ -109,18 +114,18 @@ let LoadForm = (val) => {
             <input  class="login__input" type="password" name="password">
         </label>
     </div>
-    <div>
-        <button onclick="SignIn()">Sign IN</button>
-    </div>
+        <button class="login__button__sign" onclick="SignIn()">Sign IN</button>
     <div>
         <label>
             <input id="remember" type="checkbox" checked="checked">
             Remember me
         </label>
-        <button onclick="LoadForm(false)">Register Form</button>
-    </div>`;
+        <button class="login__button__form__change" onclick="LoadForm(false)">Register Form</button>
+    </div>`
     }else{
-        LogInForm.innerHTML = `    <div class="login__head" >
+        LogInForm.innerHTML = `    
+    <button class="login__button__close" onclick="ManagerFormLogin()">X</button>
+    <div class="login__head" >
         <span class="login__head__text">REGISTER</span>
     </div>
     <div class="login__login">
@@ -144,10 +149,10 @@ let LoadForm = (val) => {
         </label>
     </div>
     <div>
-        <button onclick="Register()">Register</button>
+        <button class="login__button__sign" onclick="Register()">Register</button>
     </div>
     <div>
-        <button onclick="LoadForm(true)">Log In Form</button>
+        <button class="login__button__form__change" onclick="LoadForm(true)">Log In Form</button>
     </div>`;
     }
 }

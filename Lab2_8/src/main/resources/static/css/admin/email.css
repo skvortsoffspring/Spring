@@ -1,0 +1,76 @@
+.email > label > input {
+    width: 95%;
+}
+
+.email {
+    display: none;
+    position: absolute;
+    grid-template-rows: 1fr 1fr 1fr 5fr 0.5fr;
+    grid-template-columns: 10fr 1fr;
+    grid-template-areas:    'email_head email_close'
+                            'email_email email_email'
+                            'email_from email_from'
+                            'email_textarea email_textarea'
+                            'email_button email_button';
+    height: 400px;
+    width: 350px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background: white;
+    box-shadow: black;
+    border: 1px black solid;
+    border-radius: 3%;
+}
+
+.email__button__close{
+    grid-area: email_close;
+    border: 1px black solid;
+    width: 22px;
+    height: 22px;
+    font-size: 15px;
+    border-radius: 50%;
+    margin: 10px;
+    justify-self: end;
+}
+.login__button__close:hover{
+    color: red;
+}
+.email__head{
+    grid-area: email_head;
+    font-family: BomberEscort, sans-serif;
+    font-size: xx-large;
+    font-stretch: condensed;
+    padding: 2%;
+}
+
+.email__input__email{
+    grid-area: email_email;
+    font-family: BomberEscort, sans-serif;
+    font-size: large;
+    font-stretch: condensed;
+    margin: 10px;
+}
+.email__input__from{
+    grid-area: email_from;
+    font-family: BomberEscort, sans-serif;
+    font-size: large;
+    font-stretch: condensed;
+    margin: 10px;
+}
+.email__textarea{
+    grid-area: email_textarea;
+    resize: none;
+    height: 100%;
+    width: 109%;
+}
+.email__button{
+    grid-area: email_button;
+    border: 1px black solid;
+    margin:10px 20px 10px 10px;
+
+    border-radius: 10px;
+}

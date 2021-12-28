@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
-    <meta charset="UTF-8" />
-    <title>Task List</title>
+    <meta charset="UTF-8">
+    <title>Protected courses</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/main.css" th:href="@{/css/admin/main.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/header.css" th:href="@{/css/admin/header.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/login.css" th:href="@{/css/admin/login.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/items.css" th:href="@{/css/admin/items.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/category.css" th:href="@{/css/admin/category.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/iterator.css" th:href="@{/css/admin/iterator.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/purchased.css" th:href="@{/css/admin/purchased.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/email.css" th:href="@{/css/admin/email.css}"/>
+    <script type="text/javascript" th:src="@{/js/admin/validate.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/loaditems.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/loadcategories.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/loadpurchased.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/services.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/sendemail.js}"></script>
 </head>
 <body>
-<h1>Films list</h1>
-<br/><br/>
-<h1>RUN</h1>
+<div class="body__container">
+
+    <header>
+            <div class="header__category">
+                <label> CATEGORY
+                    <input type="text">
+                </label>
+
+                <button>✓</button>
+                <button>↺</button>
+                <button>☠</button>
+            </div>
+                <button class="nav__button" onclick="ClearSearchResult()">Home</button>
+            <button id="header__login__button" onclick="ManagerFormLogin()">Log In</button>
+
+    </header>
+
+    <div class="container">
+        <div class="editor" id="editor">
+            <!-- Here will be items -->
+        </div>
+        <div class="category" id="categories">
+            <!-- Here will be category -->
+        </div>
+        <div class="wrapper" id="wrapper">
+            <!-- Here will be items -->
+        </div>
+    </div>
+
+    <div class="nav__page" id="nav__page">
+    </div>
+</div>
+
+<div class="login" id="login">
+
+</div>
+
+<div id="email" class="email">
+
+</div>
+
+<button onclick="ForwardToAdmin()">GO TO ADMIN</button>
+
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.example.skvortsoff.controller;
 
+import com.example.skvortsoff.dto.CourseID;
 import com.example.skvortsoff.dto.PurchasedDto;
 import com.example.skvortsoff.security.JwtTokenProvider;
 import com.example.skvortsoff.service.PurchasedService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +30,17 @@ public class PurchasedController {
     public Iterable<PurchasedDto> GetPurchased(HttpServletRequest request){
         String token = jwtTokenProvider.resolveToken(request);
         String email = jwtTokenProvider.getUserName(token);
-        var a  = purchasedService.GetPurchased(email);
-        return a;
+        return purchasedService.GetPurchased(email);
+    }
+
+    @PostMapping("buy")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('user:read')")
+    public ResponseEntity<?> BuyPurchased(HttpServletRequest request, @RequestBody CourseID id){
+        String token = jwtTokenProvider.resolveToken(request);
+        String email = jwtTokenProvider.getUserName(token);
+        purchasedService.BuyPurchased(email, id);
+        return ResponseEntity.ok("Purchased buy success");
     }
 
 

@@ -1,5 +1,5 @@
 let Search =  async (val) =>{
-    if(!val.empty()) return;
+    if(val === "") return;
     fetch(`http://localhost:8080/api/courses/get/search/${val}`, {
         headers: {
             "Accept": "application/json",
@@ -45,5 +45,32 @@ let Register =  async () =>{
             }else {
                 alert(result.message);
             }
+        });
+}
+
+let ClearSearchResult = () => {
+    sessionStorage.removeItem("category");
+    document.getElementById('header__field__search').value = "";
+    getCourses();
+}
+
+let ByCourse = (id) => {
+    console.log(id);
+    fetch(`http://localhost:8080/api/purchased/buy`, {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": getToken()
+        },
+        method: "POST",
+        body: JSON.stringify(
+            {
+                id: id
+            }
+        )
+    })
+        .then(data => data.json())
+        .then(result => {
+            console.log(result);
         });
 }

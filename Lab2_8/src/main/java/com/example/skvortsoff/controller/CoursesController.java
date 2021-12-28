@@ -18,11 +18,16 @@ public class CoursesController {
         this.coursesService = coursesService;
     }
 
-
-    @GetMapping("get/page/{page}")
+    @GetMapping("get/page/{page}/{category}")
     @ResponseBody
-    public Iterable<CourseDto> getAllCoursesPage(@PathVariable("page") long id){
-        return coursesService.getPage(id);
+    public Iterable<CourseDto> getAllCoursesPage(@PathVariable("page") long id,@PathVariable("category") String category){
+        return coursesService.getPage(id, category);
+    }
+
+    @GetMapping("get/category/{category}")
+    @ResponseBody
+    public Iterable<CourseDto> getCoursesByCategory(@PathVariable String category){
+        return coursesService.getCoursesByCategory(category);
     }
 
     @GetMapping("get/{id}")
@@ -33,18 +38,16 @@ public class CoursesController {
     }
 
     @GetMapping("get/search/{val}")
-    @PreAuthorize("hasAuthority('user:read')")
     @ResponseBody
     public Iterable<CourseDto> getByNameSearch(@PathVariable("val") String name){
 
         return coursesService.Search(name);
     }
 
-    @PostMapping("get/size")
+    @GetMapping("get/size/{page}/{category}")
     @ResponseBody
-    @PreAuthorize("hasAuthority('user:write')")
-    public long getSize(){
-        return coursesService.Size();
+    public long getSize(@PathVariable("page") long id,@PathVariable("category") String category){
+        return coursesService.getSize(id, category);
     }
 
 }

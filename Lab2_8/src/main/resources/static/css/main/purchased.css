@@ -1,0 +1,40 @@
+.content__purchased{
+    display: grid;
+    grid-template-rows: 300px 1fr 1fr 1fr;
+    grid-template-areas:    'item'
+                            'key'
+                            'activated'
+                            'date';
+    width: 200px;
+    height: 415px;
+    margin: 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.content__purchased__key{
+    grid-area: key;
+    font-variant: all-petite-caps;
+    text-align: center;
+    border-bottom: 1px solid black;
+    font-size: medium;
+}
+
+.content__purchased__activated{
+    grid-area: activated;
+    border-bottom: 1px black solid;
+    font-family: BomberEscort, sans-serif;
+    font-size: large;
+    vertical-align: center;
+    text-align: center;
+}
+
+.content__item__dateActivated{
+    grid-area: date;
+    font-variant: all-petite-caps;
+    font-family: "Arial Narrow", serif;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}

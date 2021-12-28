@@ -20,10 +20,11 @@ async function GetCategories(){
         });
 }
 
+
 let builderCategories = (result) => {
     let items = "";
     result.forEach((item) => {
-        items += `<button class="category__button">${item.name}</button>`
+        items += `<button class="category__button" onclick="getCoursesByCategory(this.firstChild.nodeValue)">${item.name}</button>`
     })
     document.getElementById("categories").innerHTML = items;
 }

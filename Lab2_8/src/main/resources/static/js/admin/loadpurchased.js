@@ -1,5 +1,5 @@
 async function GetPurchased(){
-
+console.log(getToken());
     fetch(`http://localhost:8080/api/purchased/get`, {
         headers: {
             "Accept": "application/json",

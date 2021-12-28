@@ -1,7 +1,9 @@
 package com.example.skvortsoff.security;
 
 import com.example.skvortsoff.exeption.JwtAuthenticationException;
+import com.example.skvortsoff.exeption.TokenException;
 import io.jsonwebtoken.*;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,12 +55,12 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public boolean ValidateToken(String token){
+    public boolean ValidateToken(String token) throws TokenException {
         try {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         }catch (JwtException | IllegalArgumentException e){
-            throw new JwtAuthenticationException("JWT token is expired or invalid", HttpStatus.FORBIDDEN);
+            throw new TokenException("JWT token is expired or invalid");
         }
     }
 

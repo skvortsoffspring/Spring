@@ -40,11 +40,11 @@ CREATE TABLE `PURCHASED` (
     `ID` BIGINT unsigned NOT NULL AUTO_INCREMENT,
     `USER` BIGINT unsigned,
     `COURSE` BIGINT unsigned,
-    `KEY` VARCHAR(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `ACTIVE` BOOL,
-    `DATE ACTIVATED` DATE,
-    `HARDWARE TYPE` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `HARDWARE SERIAL` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `KEY` VARCHAR(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+    `ACTIVE` BOOL NULL ,
+    `DATE ACTIVATED` DATE NULL ,
+    `HARDWARE TYPE` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+    `HARDWARE SERIAL` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
     PRIMARY KEY (`ID`)
     );
 
@@ -66,4 +66,12 @@ create or replace
 begin
     select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY from (select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY, row_number() over(order by course.ID) rn from course
                                                                                         ) as Nr  where rn  between  (page * 8 + 1) and (page * 8 + 8);
+end;
+
+-- page in 8 items by category
+create or replace
+    definer = root@localhost procedure FindEightCoursesByCategory(IN page bigint, IN p_category bigint)
+begin
+    select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY from (select ID, NAME, CATEGORY, DESCRIPTION, IMAGE, PRICE, HIDE, AUTHOR, COMPLEXITY, row_number() over(order by course.ID) rn from course
+                                                                                        ) as Nr  where rn  between  (page * 8 + 1) and (page * 8 + 8) and CATEGORY = p_category;
 end;

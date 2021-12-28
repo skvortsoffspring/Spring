@@ -7,16 +7,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
-@Table(name = "purchased", indexes = {
-        @Index(name = "USER", columnList = "USER"),
-        @Index(name = "COURSE", columnList = "COURSE")
-})
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "purchased")
 public class Purchased {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +27,7 @@ public class Purchased {
     @JoinColumn(name = "COURSE")
     private Course course;
 
-    @Column(name = "`KEY`", nullable = false, length = 25)
+    @Column(name = "`KEY`", length = 25)
     private String key;
 
     @Column(name = "ACTIVE")
@@ -40,9 +36,9 @@ public class Purchased {
     @Column(name = "`DATE ACTIVATED`")
     private LocalDate dateActivated;
 
-    @Column(name = "`HARDWARE TYPE`", nullable = false, length = 20)
+    @Column(name = "`HARDWARE TYPE`", length = 20)
     private String hardwareType;
 
-    @Column(name = "`HARDWARE SERIAL`", nullable = false, length = 50)
+    @Column(name = "`HARDWARE SERIAL`", length = 50)
     private String hardwareSerial;
 }
