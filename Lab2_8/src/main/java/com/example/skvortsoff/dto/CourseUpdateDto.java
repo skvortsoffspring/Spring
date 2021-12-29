@@ -5,15 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseNewDto {
+public class CourseUpdateDto {
+
+    private long id;
 
     @NotBlank
     private String name;
@@ -21,6 +23,7 @@ public class CourseNewDto {
     @NotBlank
     private String description;
 
+    @NotNull
     private byte[] image;
 
     @NotBlank

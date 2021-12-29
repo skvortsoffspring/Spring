@@ -20,10 +20,14 @@ async function getCourses(page){
         .then(data => data.json())
         .then(result => {
             if(!result.error) {
-                let items = "";
+                let items = `<div class="wrapper__item">
+                                <div class="content__item__button"></div>
+                                <div class="content__item__name">NAME</div>
+                             </div>`;
                 result.forEach((item) => {
                     items += builderItem(item);
                 })
+                items +=`<div class="nav__page" id="nav__page"></div>`;
                 GetSize(page, category);
                 document.getElementById("wrapper").innerHTML = items;
 
@@ -39,33 +43,17 @@ async function getCourses(page){
 async function getCoursesByCategory(category){
     console.log(category);
     sessionStorage.setItem("category", category);
-    await getCourses(1);
+    await getCourses();
+    await GetCategoriesAdmin(category);
 }
 
 let builderItem = (item) => {
-    return `<div class="content__item">
-            <img class="content__item__img" src="data:image/jpg;base64,${item.image}" alt="">
+    return `<div class="wrapper__item">
+                <button class="content__item__button" onclick="LoadToEditor(${item.id})">Load</button>
                 <div class="content__item__name">${item.name}</div>
-                <span
-                    class="content__item__complexity">${GetComplexity(item.complexity)}</span>
-                <div class="content__item__price">Price ${item.price}</div>
-                <button class="content__item__button" onclick="ByCourse(${item.id})">
-                    Buy now
-                </button>
-        </div>`
+            </div>`
 }
 
-let GetComplexity = (complexity) => {
-    let response = "";
-    if(!complexity){
-        return "&#9733;";
-    }else{
-        for (let i = 0; i < complexity; i++) {
-            response += "&#9733;";
-        }
-        return response;
-    }
-}
 
 let GetSize = (page, category) => {
     fetch(`http://localhost:8080/api/courses/get/size/${page}/${category}`, {

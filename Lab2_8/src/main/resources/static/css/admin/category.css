@@ -2,8 +2,9 @@
     display: grid;
     float: left;
     grid-auto-flow: row;
-    grid-auto-rows: 60px;
+    grid-auto-rows: 30px;
     grid-gap: 10px;
+    margin-top: 50px;
 }
 
 .category__button{

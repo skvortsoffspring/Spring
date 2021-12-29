@@ -1,0 +1,7 @@
+.editor{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+    border: 1px black solid;
+    margin: 50px;
+    height: 500px;
+}

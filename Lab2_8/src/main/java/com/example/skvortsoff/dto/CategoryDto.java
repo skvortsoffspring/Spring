@@ -6,17 +6,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryDto {
 
-    @NotBlank
+    @Null
+    private long id;
+
+    @Null
     private String name;
 
-    @NotNull
+    @Null
     private byte[] image;
 
 

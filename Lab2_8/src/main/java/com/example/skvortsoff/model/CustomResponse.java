@@ -1,22 +1,20 @@
 package com.example.skvortsoff.model;
 
+import lombok.Data;
+
+@Data
 public class CustomResponse {
 
     private String message;
+    private String error;
 
-    public CustomResponse() {
-    }
-
+    public CustomResponse(){}
     public CustomResponse(String message) {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
+    public CustomResponse(String message, String error) {
         this.message = message;
+        this.error = error;
     }
-
 }

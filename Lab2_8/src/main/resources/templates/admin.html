@@ -9,14 +9,11 @@
     <link rel="stylesheet" type="text/css" href="../static/css/admin/items.css" th:href="@{/css/admin/items.css}"/>
     <link rel="stylesheet" type="text/css" href="../static/css/admin/category.css" th:href="@{/css/admin/category.css}"/>
     <link rel="stylesheet" type="text/css" href="../static/css/admin/iterator.css" th:href="@{/css/admin/iterator.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/admin/purchased.css" th:href="@{/css/admin/purchased.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/admin/email.css" th:href="@{/css/admin/email.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin/editor.css" th:href="@{/css/admin/editor.css}"/>
     <script type="text/javascript" th:src="@{/js/admin/validate.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin/loaditems.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin/loadcategories.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin/loadpurchased.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/items.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/categories.js}"></script>
     <script type="text/javascript" th:src="@{/js/admin/services.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin/sendemail.js}"></script>
 </head>
 <body>
 <div class="body__container">
@@ -24,39 +21,35 @@
     <header>
             <div class="header__category">
                 <label> CATEGORY
-                    <input type="text">
+                    <input type="hidden" id="header__category__id">
+                    <input type="text" id="header__category__input">
                 </label>
 
-                <button>✓</button>
-                <button>↺</button>
-                <button>☠</button>
+                <button onclick="PostCategory()">✓</button>
+                <button onclick="PutCategory()">↺</button>
+                <button onclick="DeleteCategory()">☠</button>
             </div>
-                <button class="nav__button" onclick="ClearSearchResult()">Home</button>
+
+            <div class="header__logo">ADMIN PANEL</div>
+            <button class="nav__button" onclick="ClearSearchResult()">Home</button>
             <button id="header__login__button" onclick="ManagerFormLogin()">Log In</button>
 
     </header>
 
     <div class="container">
         <div class="editor" id="editor">
-            <!-- Here will be items -->
+
         </div>
         <div class="category" id="categories">
             <!-- Here will be category -->
         </div>
-        <div class="wrapper" id="wrapper">
-            <!-- Here will be items -->
-        </div>
-    </div>
 
-    <div class="nav__page" id="nav__page">
-    </div>
+        <div class="wrapper" id="wrapper">
+
+        </div>
 </div>
 
 <div class="login" id="login">
-
-</div>
-
-<div id="email" class="email">
 
 </div>
 

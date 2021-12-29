@@ -14,7 +14,6 @@ public class PageController {
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('user:read')")
     public String GetAdminPage(){
         return "admin";
     }

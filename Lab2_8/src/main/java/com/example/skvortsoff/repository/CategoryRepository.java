@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+    boolean existsByName(String name);
     @Query("select c from Category c where c.name = ?1")
     Category findByName(String name);
 }

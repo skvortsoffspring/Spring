@@ -1,9 +1,13 @@
 package com.example.skvortsoff.controller;
 
+import com.example.skvortsoff.dto.CategoryDto;
 import com.example.skvortsoff.dto.CourseDto;
+import com.example.skvortsoff.dto.CourseNewDto;
+import com.example.skvortsoff.dto.CourseUpdateDto;
 import com.example.skvortsoff.service.CoursesService;
 import com.example.skvortsoff.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +52,27 @@ public class CoursesController {
     @ResponseBody
     public long getSize(@PathVariable("page") long id,@PathVariable("category") String category){
         return coursesService.getSize(id, category);
+    }
+
+    @PostMapping("admin/add")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<?> AddCategory(@RequestBody CourseNewDto courseNewDto){
+        return coursesService.AddCourse(courseNewDto);
+    }
+
+    @PutMapping("admin/update")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<?> UpdateCategory(@RequestBody CourseUpdateDto courseUpdateDto){
+        return coursesService.UpdateCourse(courseUpdateDto);
+    }
+
+    @DeleteMapping("admin/del")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<?> DeleteCategory(@RequestBody CategoryDto category){
+        return categoriesService.DeleteCategory(category);
     }
 
 }
