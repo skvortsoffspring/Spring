@@ -1,12 +1,14 @@
 package com.example.skvortsoff.service;
 
-import com.example.skvortsoff.dto.CourseDto;
+import com.example.skvortsoff.dto.*;
 import com.example.skvortsoff.entity.Category;
+import com.example.skvortsoff.entity.Course;
 import com.example.skvortsoff.repository.CategoryRepository;
 import com.example.skvortsoff.repository.CourseRepository;
 import com.example.skvortsoff.util.Mapper;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -62,4 +64,34 @@ public class CoursesService {
             throw new ServiceException("Exception CoursesService.getSize");
         }
     }
+
+    public ResponseEntity<?> AddCourse(CourseNewDto courseNewDto){
+            courseRepository.save(Mapper.map(courseNewDto, Course.class));
+            return ResponseEntity.ok("Course add");
+    }
+
+    public ResponseEntity<?> UpdateCourse(CourseUpdateDto courseUpdateDto){
+        if(courseRepository.existsById(courseUpdateDto.getId())) {
+            Course courseOld = courseRepository.getById(courseUpdateDto.getId());
+            courseOld.setId(courseUpdateDto.getId());
+            courseOld.setName(courseUpdateDto.getName());
+            courseOld.setCategory(courseUpdateDto.getCategory());
+            courseOld.setImage(courseUpdateDto.getImage());
+            courseOld.setPrice(courseUpdateDto.getPrice());
+            courseOld.setComplexity(courseUpdateDto.getComplexity());
+            courseRepository.save(courseOld);
+            return ResponseEntity.ok("Course update");
+        }return
+                ResponseEntity.notFound().build();
+    }
+
+    public ResponseEntity<?> DeleteCourse(CourseIdDto courseIdDto){
+        if(courseRepository.existsById(courseIdDto.getId()))
+        {
+            courseRepository.deleteById(courseIdDto.getId());
+            return ResponseEntity.ok("Course delete");
+        }
+        return ResponseEntity.ok("Error delete course");
+    }
+
 }

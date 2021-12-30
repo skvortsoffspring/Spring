@@ -17,4 +17,10 @@ public class PageController {
     public String GetAdminPage(){
         return "admin";
     }
+
+    @GetMapping("/body")
+    @PreAuthorize("hasAuthority('user:write')")
+    public String GetAdminBody(){
+        return "body";
+    }
 }

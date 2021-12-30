@@ -1,6 +1,6 @@
 package com.example.skvortsoff.service;
 
-import com.example.skvortsoff.dto.CourseID;
+import com.example.skvortsoff.dto.CourseIdDto;
 import com.example.skvortsoff.dto.PurchasedDto;
 import com.example.skvortsoff.entity.Purchased;
 import com.example.skvortsoff.entity.User;
@@ -11,8 +11,6 @@ import com.example.skvortsoff.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class PurchasedService {
@@ -33,9 +31,9 @@ public class PurchasedService {
         return Mapper.mapAll(purchasedRepository.findByUserId(user.getId()), PurchasedDto.class);
     }
 
-    public void BuyPurchased(String email, CourseID courseID){
+    public void BuyPurchased(String email, CourseIdDto courseIDDto){
         var user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));;
-        var course = courseRepository.findById(courseID.getId()).orElse(null);
+        var course = courseRepository.findById(courseIDDto.getId()).orElse(null);
         var purchased = new Purchased();
         purchased.setActive(false);
         purchased.setUser(user);

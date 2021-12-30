@@ -14,10 +14,8 @@ let SendEmail = () => {
             }
         )
     })
-        .then(data => data.json())
         .then(result => {
             console.log(result);
-
         });
 }
 
@@ -28,7 +26,7 @@ let getFormContact = () => {
   <div class="email__head">FEEDBACK</div>
     <button class="email__button__close" onclick="FormEmailClose()">X</button>
     <label class="email__input__email"> EMAIL
-        <input id="senderEmail" type="email"placeholder="mail@gmail.com">
+        <input id="senderEmail" type="email" placeholder="mail@gmail.com">
     </label>
     <label class="email__input__from"> FOR
         <input id="senderFrom" type="text" placeholder="Jack Weinstein">

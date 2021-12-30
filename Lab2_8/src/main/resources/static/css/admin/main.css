@@ -1,6 +1,21 @@
 body, button, span, div{
     padding: 0;
     margin: 0;
+
+
+}
+a{
+    font-family: BomberEscort, sans-serif;
+    font-size: x-large;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 200px;
+    height: 40px;
+    text-decoration: none;
+    color: black;
 }
 @font-face {
     font-family: Crizen;

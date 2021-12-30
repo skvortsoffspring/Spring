@@ -1,15 +1,17 @@
 package com.example.skvortsoff.controller;
 
-import com.example.skvortsoff.dto.CategoryDto;
-import com.example.skvortsoff.dto.CourseDto;
-import com.example.skvortsoff.dto.CourseNewDto;
-import com.example.skvortsoff.dto.CourseUpdateDto;
+import com.example.skvortsoff.aop.LogAnnotation;
+import com.example.skvortsoff.dto.*;
 import com.example.skvortsoff.service.CoursesService;
 import com.example.skvortsoff.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/courses/**")
@@ -54,25 +56,28 @@ public class CoursesController {
         return coursesService.getSize(id, category);
     }
 
+    @LogAnnotation
     @PostMapping("admin/add")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<?> AddCategory(@RequestBody CourseNewDto courseNewDto){
+    public ResponseEntity<?> AddCategory(@Valid @RequestBody CourseNewDto courseNewDto) throws IOException {
         return coursesService.AddCourse(courseNewDto);
     }
 
+    @LogAnnotation
     @PutMapping("admin/update")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<?> UpdateCategory(@RequestBody CourseUpdateDto courseUpdateDto){
+    public ResponseEntity<?> UpdateCategory(@Valid @RequestBody CourseUpdateDto courseUpdateDto){
         return coursesService.UpdateCourse(courseUpdateDto);
     }
 
+    @LogAnnotation
     @DeleteMapping("admin/del")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<?> DeleteCategory(@RequestBody CategoryDto category){
-        return categoriesService.DeleteCategory(category);
+    public ResponseEntity<?> DeleteCategory(@Valid @RequestBody CourseIdDto courseIdDto){
+        return coursesService.DeleteCourse(courseIdDto);
     }
 
 }

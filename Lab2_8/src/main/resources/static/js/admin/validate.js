@@ -1,4 +1,18 @@
 window.onload = function() {
+    setTimeout(() => {
+        GetCategories();
+        getCourses();
+        LoadForm(true);
+        }, 100);
+
+
+    document.getElementById("editor__complexity__value").oninput = () => {
+        document.getElementById("editor__complexity__view").innerHTML = GetComplexity(document.getElementById("editor__complexity__value").value);
+    }
+}
+
+let Load = function() {
+
     GetCategories();
     getCourses();
     LoadForm(true);
@@ -72,6 +86,7 @@ async function SignOut(){
     localStorage.clear();
     sessionStorage.clear();
     CheckStorageToken();
+    BlockAdminPanel();
 }
 
 let getToken = () => {
@@ -96,6 +111,10 @@ let ManagerFormLogin = () => {
     }
 }
 
+let BlockAdminPanel =() => {
+
+}
+
 let LoadForm = (val) => {
     let LogInForm = document.getElementById("login");
     if(val){
@@ -106,12 +125,12 @@ let LoadForm = (val) => {
     </div>
     <div class="login__email">
         <label class="login__label">EMAIL
-            <input  class="login__input" type="email" name="email">
+            <input  class="login__input" type="email" name="email" placeholder="mail@mail.com">
         </label>
     </div>
     <div class="login__password">
         <label class="login__label">PASSWORD
-            <input  class="login__input" type="password" name="password">
+            <input  class="login__input" type="password" name="password" placeholder="******">
         </label>
     </div>
         <button class="login__button__sign" onclick="SignIn()">Sign IN</button>
@@ -122,7 +141,8 @@ let LoadForm = (val) => {
         </label>
         <button class="login__button__form__change" onclick="LoadForm(false)">Register Form</button>
     </div>`
-    }else{
+    }
+    else{
         LogInForm.innerHTML = `    
     <button class="login__button__close" onclick="ManagerFormLogin()">X</button>
     <div class="login__head" >
@@ -130,17 +150,17 @@ let LoadForm = (val) => {
     </div>
     <div class="login__login">
         <label class="login__label">LOGIN
-            <input  class="login__input" type="text" max="20" name="login">
+            <input  class="login__input" type="text" max="20" name="login" placeholder="skvortsoff">
         </label>
     </div>
     <div class="login__email">
         <label class="login__label">EMAIL
-            <input  class="login__input" type="email" name="email">
+            <input  class="login__input" type="email" name="email" placeholder="mail@gmail.com">
         </label>
     </div>
     <div class="login__phone">
         <label class="login__label">PHONE
-            <input  class="login__input" type="text" name="phone">
+            <input  class="login__input" type="text" name="phone" placeholder="**-***-**-**">
         </label>
     </div>
     <div class="login__password">

@@ -1,5 +1,6 @@
 package com.example.skvortsoff.dto;
 
+import com.example.skvortsoff.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,9 @@ public class CourseUpdateDto {
 
     @NotBlank
     private String description;
+
+    @NotNull
+    private Category category;
 
     @NotNull
     private byte[] image;

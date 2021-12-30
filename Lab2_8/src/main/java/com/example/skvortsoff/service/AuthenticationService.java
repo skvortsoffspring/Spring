@@ -9,6 +9,7 @@ import com.example.skvortsoff.exeption.TokenException;
 import com.example.skvortsoff.repository.UserRepository;
 import com.example.skvortsoff.security.JwtTokenProvider;
 import com.example.skvortsoff.util.Mapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -59,7 +60,7 @@ public class AuthenticationService {
         userRepository.save(user);
         Map<String, String> map = new HashMap<>();
         map.put("message", "User registered");
-        return ResponseEntity.ok(map);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

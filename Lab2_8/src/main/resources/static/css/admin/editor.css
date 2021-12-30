@@ -1,7 +1,52 @@
 .editor{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+    grid-template-rows: 0 1fr 1fr 100px 1fr 1fr 1fr;
     border: 1px black solid;
     margin: 50px;
     height: 500px;
+    min-width: 300px;
+}
+
+.editor > label > input {
+    width: 80%;
+}
+.editor > label{
+    align-self: center;
+}
+
+
+.editor__complexity > div{
+    margin: 5px 0 0 5px;
+}
+.editor__image{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+.editor__image > img {
+    height: 90px;
+    width: 90px;
+    border-right: 1px solid black;
+    border-radius: 5px;
+}
+.editor__image > input {
+    align-self: end;
+    margin-bottom: 20px;
+}
+.editor__complexity{
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+#editor__complexity__view{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    font-size: x-large;
+    text-align: center;
+}
+#editor__complexity__value{
+    width: 98%;
 }

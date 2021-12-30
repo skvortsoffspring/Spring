@@ -44,10 +44,13 @@ async function GetCategoriesAdmin(category){
 
 let builderCategories = (result) => {
     let items = "";
+    let options = ""
     result.forEach((item) => {
-        items += `<button class="category__button" onclick="getCoursesByCategory(this.firstChild.nodeValue)">${item.name}</button>`
+        items += `<button class="category__button" onclick="getCoursesByCategory(this.firstChild.nodeValue)">${item.name}</button>`;
+        options += `<option value="${item.id}">${item.name}</option>`;
     })
     document.getElementById("categories").innerHTML = items;
+    document.getElementById("editor__select__category").innerHTML = options;
 }
 // SELECT UPDATE DELETE
 let PostCategory = async () =>{

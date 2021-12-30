@@ -1,6 +1,6 @@
 package com.example.skvortsoff.controller;
 
-import com.example.skvortsoff.dto.CourseID;
+import com.example.skvortsoff.dto.CourseIdDto;
 import com.example.skvortsoff.dto.PurchasedDto;
 import com.example.skvortsoff.security.JwtTokenProvider;
 import com.example.skvortsoff.service.PurchasedService;
@@ -36,7 +36,7 @@ public class PurchasedController {
     @PostMapping("buy")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<?> BuyPurchased(HttpServletRequest request, @RequestBody CourseID id){
+    public ResponseEntity<?> BuyPurchased(HttpServletRequest request, @RequestBody CourseIdDto id){
         String token = jwtTokenProvider.resolveToken(request);
         String email = jwtTokenProvider.getUserName(token);
         purchasedService.BuyPurchased(email, id);

@@ -44,6 +44,6 @@ public class ControllerAdviceExceptions {
     public ResponseEntity<CustomResponse> handleExceptionSenderEmail(EmailSenderException e) {
         String errorSendEmail = "Error send email";
         CustomResponse response = new CustomResponse( e.getMessage(), errorSendEmail);
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response, HttpStatus.GATEWAY_TIMEOUT);
     }
 }

@@ -32,7 +32,7 @@ public class Course {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
-    @Column(name = "DESCRIPTION", nullable = false, length = 1000)
+    @Column(name = "DESCRIPTION", length = 1000)
     private String description;
 
     @Column(name = "IMAGE", columnDefinition = "mediumblob")

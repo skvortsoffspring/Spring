@@ -8,6 +8,7 @@ header{
     grid-gap: 5px;
     border-bottom: 1px black solid;
     border-top: 1px black solid;
+    height: 50px;
 }
 
 /**** NAVIGATION ****/

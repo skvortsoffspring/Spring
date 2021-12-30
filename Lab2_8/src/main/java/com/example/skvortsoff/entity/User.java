@@ -46,4 +46,16 @@ public class User {
     @Column(name = "STATUS")
     @Enumerated(value = EnumType.STRING)
     private Status status;
+
+    public User(String login, String email, String phone, String password) {
+        this.login = login;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
+    public User(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
 }
