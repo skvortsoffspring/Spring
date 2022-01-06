@@ -1,37 +1,34 @@
 package com.example.skvortsoff.dto;
 
-import com.example.skvortsoff.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Digits;
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.math.BigDecimal;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseDto {
+public class NewCourseDto {
 
-    @Digits(integer=18,fraction=0)
-    private Long id;
-
-    @Null
+    @NotBlank
     private String name;
 
-    private Category category;
+    @NotBlank
+    private String description;
 
-    @Null
     private byte[] image;
 
-    @Null
+    @NotBlank
     private BigDecimal price;
 
-    @Null
-    private Integer complexity;
+    @NotNull
+    private Boolean hide;
 
+    @Column(name = "COMPLEXITY")
+    private Integer complexity;
 }

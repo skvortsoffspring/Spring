@@ -31,8 +31,8 @@ public class LogAspect {
 
     }
 
-    @After("callController()")
+   /* @After("callController()")
     public void afterCallAt(JoinPoint jp) {
         log.info("after " + jp.toString());
-    }
+    }*/
 }

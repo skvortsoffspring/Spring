@@ -8,7 +8,6 @@ public class CustomResponse {
     private String message;
     private String error;
 
-    public CustomResponse(){}
     public CustomResponse(String message) {
         this.message = message;
     }

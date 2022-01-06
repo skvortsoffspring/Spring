@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 @Getter
 @Setter
@@ -19,8 +17,10 @@ public class CourseNewDto {
 
     @NotBlank
     private String name;
+    @Size(min = 3, max = 200, message = "About Me must be between 10 and 100 characters")
 
     @Null
+    @Size(min = 10, max = 200, message = "About Me must be between 20 and 1000 characters")
     private String description;
 
     @NotNull
@@ -28,9 +28,10 @@ public class CourseNewDto {
 
     private byte[] image;
 
-    @NotBlank
+    @Digits(integer=5,fraction=0)
     private BigDecimal price;
 
-    @NotBlank
+    @Max(10)
+    @Min(1)
     private Integer complexity;
 }

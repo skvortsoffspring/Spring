@@ -40,7 +40,7 @@ public class AuthenticationRestController {
                             schema = @Schema(implementation = AuthUserDto.class)) }),
             @ApiResponse(responseCode = "400", description = "Error login or password",
                     content = @Content)})
-    @LogAnnotation
+
     @ResponseBody
     @PostMapping("login")
     public ResponseEntity<?> authenticate(@Valid @RequestBody AuthUserDto request) throws TokenException {
@@ -53,7 +53,6 @@ public class AuthenticationRestController {
         securityContextLogoutHandler.logout(request, response, null);
     }
 
-    @LogAnnotation
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody UserNewDto userDto) {
 

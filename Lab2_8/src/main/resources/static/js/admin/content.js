@@ -132,8 +132,10 @@ let ForwardToAdmin = () =>{
                     .catch(e => {
                         console.log(e)
                     })
-                Load();
-                document.getElementById("load__page").onclick = Load;
+                setTimeout(() => {
+                    Load();
+                    document.getElementById("load__page").onclick = Load;
+                },100);
             }
         }).catch(e => {console.log(e)});
 
@@ -174,7 +176,7 @@ async function PostCourse(){
                 alert(result.message);
             }
         });
-    getCourses();
+    await getCourses();
 }
 
 async function PutCourse(){
@@ -213,7 +215,7 @@ async function PutCourse(){
                 alert(result.message);
             }
         });
-    getCourses();
+    await getCourses();
 }
 
 async function DeleteCourse(){
@@ -238,7 +240,7 @@ async function DeleteCourse(){
                 alert(result.message);
             }
         });
-    getCourses();
+    await getCourses();
 }
 
 let LoadToEditor = (val) => {

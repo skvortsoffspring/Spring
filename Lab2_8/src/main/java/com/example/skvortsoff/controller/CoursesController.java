@@ -4,6 +4,7 @@ import com.example.skvortsoff.aop.LogAnnotation;
 import com.example.skvortsoff.dto.*;
 import com.example.skvortsoff.service.CoursesService;
 import com.example.skvortsoff.util.Mapper;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -57,6 +58,7 @@ public class CoursesController {
     }
 
     @LogAnnotation
+    @Before("Create course")
     @PostMapping("admin/add")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
@@ -64,7 +66,6 @@ public class CoursesController {
         return coursesService.AddCourse(courseNewDto);
     }
 
-    @LogAnnotation
     @PutMapping("admin/update")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")
@@ -72,7 +73,6 @@ public class CoursesController {
         return coursesService.UpdateCourse(courseUpdateDto);
     }
 
-    @LogAnnotation
     @DeleteMapping("admin/del")
     @ResponseBody
     @PreAuthorize("hasAuthority('user:write')")

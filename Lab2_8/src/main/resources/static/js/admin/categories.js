@@ -72,6 +72,7 @@ let PostCategory = async () =>{
                 GetCategories();
         });
 }
+
 let PutCategory = async () =>{
     fetch(`http://localhost:8080/api/categories/admin/update`, {
         headers: {
@@ -111,5 +112,6 @@ let DeleteCategory = async () =>{
         .then(result => {
             console.log(result);
             GetCategories();
+            sessionStorage.removeItem("category");
         });
 }
